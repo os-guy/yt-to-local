@@ -16,15 +16,20 @@ Most of the Linux distros are already installing it.
 
 ## Building
 
+#### On Linux
+
 First of all, you should build this project with the following commands:
-
 `git clone [THIS-REPO]`
+
 After that, open the directory with following:
-
 `cd yt-to-audio`
-Install the requirements with the following command:
 
+Install the requirements with the following command:
 `pip install -r requirements.txt`
+
+#### On Windows
+
+Just download the `.zip` file and extract it.
 
 ## Running The Project
 
