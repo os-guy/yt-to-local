@@ -6,7 +6,7 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QPushButton,
 from PyQt6.QtCore import Qt, QThread, pyqtSignal, QRunnable, QThreadPool
 from yt_dlp import YoutubeDL
 import re
-from yt_dlp.utils import get_bin_path
+import shutil
 
 class URLFinder(QRunnable):
     def __init__(self, url_input, quality_combo, filetype_combo, download_button, choose_folder_button, choose_folder_status, quality_label, filetype_label, status_bar):
@@ -86,17 +86,26 @@ class DownloadThread(QThread):
             if os.path.exists(os.path.join(self.save_path, f"{self.video_title}.{self.filetype}")):
                 QMessageBox.warning(None, "Warning", "File already exists.")
                 return
+            
+            ffmpeg_path = shutil.which('ffmpeg')
+            ffprobe_path = shutil.which('ffprobe')
 
-            ydl_opts = {
-                'format': self.selected_stream['format_id'],
-                'outtmpl': os.path.join(self.save_path, '%(title)s.%(ext)s'),
-                'quiet': False,  # Show download progress
-                'progress_hooks': [self.progress_hook],
-                'postprocessors': [{
-                    'key': 'FFmpegExtractAudio',
-                    'preferredcodec': self.filetype,
-                }],
-            }
+            if ffmpeg_path and ffprobe_path:
+                ydl_opts = {
+                    'format': self.selected_stream['format_id'],
+                    'outtmpl': os.path.join(self.save_path, '%(title)s.%(ext)s'),
+                    'quiet': False,  # Show download progress
+                    'progress_hooks': [self.progress_hook],
+                    'postprocessors': [{
+                        'key': 'FFmpegExtractAudio',
+                        'preferredcodec': self.filetype,
+                        'ffmpeg_location': ffmpeg_path,  # Use the found ffmpeg path
+                        'ffprobe_location': ffprobe_path,  # Use the found ffprobe path
+                    }],
+                }
+            else:
+                print("ffmpeg or ffprobe not found in PATH")
+            
             with YoutubeDL(ydl_opts) as ydl:
                 ydl.download([self.url])
             self.download_finished.emit()  # Emit signal when download finishes
