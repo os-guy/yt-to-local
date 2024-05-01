@@ -1,0 +1,7 @@
+pyqt6
+pytube
+moviepy
+yt-dlp
+ffprobe
+ffmpeg
+youtube_dl
