@@ -18,7 +18,7 @@ Most of the Linux distros are already installing it.
 
 #### On Linux
 
-First of all, you should build this project with the following commands:
+First of all, you should clone this repo with the following command:
 `git clone [THIS-REPO]`
 
 After that, open the directory with following:
