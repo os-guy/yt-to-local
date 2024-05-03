@@ -96,13 +96,13 @@ class DownloadThread(QThread):
                     'outtmpl': os.path.join(self.save_path, '%(title)s.%(ext)s'),
                     'quiet': False,  # Show download progress
                     'progress_hooks': [self.progress_hook],
+                    'ffmpeg_location': ffmpeg_path,  # Use the found ffmpeg path
+                    'ffprobe_location': ffprobe_path,  # Use the found ffprobe path
                     'postprocessors': [{
                         'key': 'FFmpegExtractAudio',
                         'preferredcodec': self.filetype,
-                        'ffmpeg_location': ffmpeg_path,  # Use the found ffmpeg path
-                        'ffprobe_location': ffprobe_path,  # Use the found ffprobe path
-                    }],
-                }
+                }],
+            }
             else:
                 print("ffmpeg or ffprobe not found in PATH")
             
