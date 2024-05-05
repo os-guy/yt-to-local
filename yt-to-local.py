@@ -87,20 +87,20 @@ class DownloadThread(QThread):
                 QMessageBox.warning(None, "Warning", "File already exists.")
                 return
             
-            ffmpeg_path = shutil.which('ffmpeg')
-            ffprobe_path = shutil.which('ffprobe')
+            ffmpeg_path = os.environ.get('FFMPEG_PATH', 'ffmpeg')
+            ffprobe_path = os.environ.get('FFPROBE_PATH', 'ffprobe')
 
             if ffmpeg_path and ffprobe_path:
                 ydl_opts = {
-                    'format': self.selected_stream['format_id'],
-                    'outtmpl': os.path.join(self.save_path, '%(title)s.%(ext)s'),
-                    'quiet': False,  # Show download progress
-                    'progress_hooks': [self.progress_hook],
-                    'ffmpeg_location': ffmpeg_path,  # Use the found ffmpeg path
-                    'ffprobe_location': ffprobe_path,  # Use the found ffprobe path
-                    'postprocessors': [{
-                        'key': 'FFmpegExtractAudio',
-                        'preferredcodec': self.filetype,
+                'format': self.selected_stream['format_id'],
+                'outtmpl': os.path.join(self.save_path, '%(title)s.%(ext)s'),
+                'quiet': False,  # Show download progress
+                'progress_hooks': [self.progress_hook],
+                'postprocessors': [{
+                    'key': 'FFmpegExtractAudio',
+                    'preferredcodec': self.filetype,
+                    'ffmpeg_location': ffmpeg_path,  # Use the environment variable or default to 'ffmpeg'
+                    'ffprobe_location': ffprobe_path,  # Use the environment variable or default to 'ffprobe'
                 }],
             }
             else:
