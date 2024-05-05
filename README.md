@@ -29,8 +29,8 @@ Install the requirements with the following command:
 
 #### On Windows
 
-Just download the `.zip` file and extract it.
-
+CURRENTLY NOT AVAILABLE ON WINDOWS.
+Sorry about that.
 ## Running The Project
 
 THIS PROJECT IS IN ALPHA.
@@ -39,7 +39,7 @@ You can run this with following:
 #### On Linux
 - Open terminal and type `python3 [PROJECT-PATH].py`
 #### On Windows
-- You can just run the project with double-clicking.
+- Not available.
 
 ## Project State
 
