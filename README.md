@@ -33,7 +33,7 @@ Install the requirements with the following command:
 Download the `.zip` file and extract it.
 Copy the `requirements.txt` path.
 Open cmd and type:
-`pip install -r requirements.txt`
+`pip install -r <Reqs-Path-Here>`
 
 ## Running The Project
 
