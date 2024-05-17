@@ -5,6 +5,7 @@ This project was made on Python Programming Language.
 ## Requirements
 
 YOU SHOULD INSTALL PYTHON TO RUN IT.
+AND PIP, FOR INSTALLING DEPENDENCIES.
 Most of the Linux distros are already installing it.
 
 - pyqt6
@@ -29,8 +30,11 @@ Install the requirements with the following command:
 
 #### On Windows
 
-CURRENTLY NOT AVAILABLE ON WINDOWS.
-Sorry about that.
+Download the `.zip` file and extract it.
+Copy the `requirements.txt` path.
+Open cmd and type:
+`pip install -r requirements.txt`
+
 ## Running The Project
 
 THIS PROJECT IS IN ALPHA.
@@ -39,7 +43,7 @@ You can run this with following:
 #### On Linux
 - Open terminal and type `python3 [PROJECT-PATH].py`
 #### On Windows
-- Not available.
+- Double click on `yt-to-local-windows.py`. It should run automaticly.
 
 ## Project State
 
