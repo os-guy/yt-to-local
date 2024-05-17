@@ -31,7 +31,9 @@ Most of the Linux distros are already installing it.
 #### On Windows
 
 - Download the `.zip` file and extract it.
+
 - Copy the `requirements.txt` path.
+
 - Open cmd and type: `pip install -r <Reqs-Path-Here>`
 
 ## Running The Project
