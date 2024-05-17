@@ -45,6 +45,7 @@ You can run this with following:
 - Open terminal and type `python3 [PROJECT-PATH].py`
 #### On Windows
 - Double click on `yt-to-local-windows.py`. It should run automatically.
+- Or just run the EXE file.
 
 ## Project State
 
