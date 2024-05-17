@@ -86,32 +86,27 @@ class DownloadThread(QThread):
             if os.path.exists(os.path.join(self.save_path, f"{self.video_title}.{self.filetype}")):
                 QMessageBox.warning(None, "Warning", "File already exists.")
                 return
-            
-            ffmpeg_path = os.environ.get('FFMPEG_PATH', 'ffmpeg')
-            ffprobe_path = os.environ.get('FFPROBE_PATH', 'ffprobe')
 
-            if ffmpeg_path and ffprobe_path:
-                ydl_opts = {
+            ydl_opts = {
                 'format': self.selected_stream['format_id'],
                 'outtmpl': os.path.join(self.save_path, '%(title)s.%(ext)s'),
-                'quiet': False,  # Show download progress
+                'quiet': False,
                 'progress_hooks': [self.progress_hook],
                 'postprocessors': [{
                     'key': 'FFmpegExtractAudio',
                     'preferredcodec': self.filetype,
-                    'ffmpeg_location': ffmpeg_path,  # Use the environment variable or default to 'ffmpeg'
-                    'ffprobe_location': ffprobe_path,  # Use the environment variable or default to 'ffprobe'
                 }],
             }
-            else:
-                print("ffmpeg or ffprobe not found in PATH")
-            
+
             with YoutubeDL(ydl_opts) as ydl:
                 ydl.download([self.url])
-            self.download_finished.emit()  # Emit signal when download finishes
+
+            self.download_finished.emit() 
         except Exception as e:
             print(f"Error occurred: {e}")
             self.download_progress.emit(0)
+            # Notify the user of the FFmpeg/FFprobe error
+            QMessageBox.critical(None, "Error", "FFmpeg or FFprobe not found. Please install them for audio extraction.")
 
     def progress_hook(self, progress):
         if progress['status'] == 'downloading':
