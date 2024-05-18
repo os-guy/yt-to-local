@@ -23,7 +23,7 @@ Most of the Linux distros are already installing it.
 `git clone [THIS-REPO]`
 
 - After that, open the directory with following:
-`cd yt-to-audio`
+`cd yt-to-local`
 
 - Install the requirements with the following command:
 `pip install -r requirements.txt`
