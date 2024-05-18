@@ -20,7 +20,7 @@ Most of the Linux distros are already installing it.
 #### On Linux
 
 - First of all, you should clone this repo with the following command:
-`git clone [THIS-REPO]`
+`git clone https://github.com/os-guy/yt-to-local.git`
 
 - After that, open the directory with following:
 `cd yt-to-local`
@@ -45,7 +45,6 @@ You can run this with following:
 - Open terminal and type `python3 [PROJECT-PATH].py`
 #### On Windows
 - Double click on `yt-to-local-windows.py`. It should run automatically.
-- Or just run the EXE file.
 
 ## Project State
 
