@@ -44,6 +44,7 @@ Most of the Linux distros are already installing it.
 4. Add `C:\ffmpeg\bin` to the empty field and confirm changes with __OK__.
    
 *The change in the Path variable line confirms the FFmpeg is added to PATH.*
+*This should add __FFprobe__ to PATH too. Because __FFmpeg__ and __FFprobe__ are typically in the same folder.*
 
 ## Running The Project
 
