@@ -4,8 +4,8 @@ This project was made on Python Programming Language.
 
 ## Requirements
 
-YOU SHOULD INSTALL PYTHON TO RUN IT.
-AND PIP, FOR INSTALLING DEPENDENCIES.
+__YOU SHOULD INSTALL PYTHON TO RUN IT.__
+__AND PIP, FOR INSTALLING DEPENDENCIES.__
 Most of the Linux distros are already installing it.
 
 - pyqt6
@@ -17,7 +17,7 @@ Most of the Linux distros are already installing it.
 
 ## Building
 
-#### On Linux
+### On Linux
 
 - First of all, you should clone this repo with the following command:
 `git clone https://github.com/os-guy/yt-to-local.git`
@@ -25,10 +25,10 @@ Most of the Linux distros are already installing it.
 - After that, open the directory with following:
 `cd yt-to-local`
 
-- Install the requirements with the following command:
+- Install the __requirements__ with the following command:
 `pip install -r requirements.txt`
 
-#### On Windows
+### On Windows
 
 - Download the `.zip` file and extract it.
 
@@ -36,9 +36,18 @@ Most of the Linux distros are already installing it.
 
 - Open cmd and type: `pip install -r <Reqs-Path-Here>`
 
+#### Adding FFmpeg To PATH
+
+1. Type system *variables* into the search bar and click the __Edit the system environment variables__ option.
+2. Under the *User variables* section, select *Path* and click the __Edit__ button.
+3. Choose __New__ from the side menu.
+4. Add `C:\ffmpeg\bin` to the empty field and confirm changes with __OK__.
+   
+*The change in the Path variable line confirms the FFmpeg is added to PATH.*
+
 ## Running The Project
 
-THIS PROJECT IS IN ALPHA.
+__THIS PROJECT IS IN ALPHA__.
 You can run this with following:
 
 #### On Linux
