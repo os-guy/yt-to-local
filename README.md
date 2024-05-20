@@ -60,3 +60,4 @@ You can run this with following:
 
 This project is new and the developer is still working on it.
 So, if you'll be able to find some issues, please report to us.
+Problems can be solve.
