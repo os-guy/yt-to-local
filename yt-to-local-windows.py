@@ -9,7 +9,7 @@ from yt_dlp import YoutubeDL
 
 class URLFinder(QObject,QRunnable):
     video_info_found = pyqtSignal(dict)
-    
+
     def __init__(self, open_folder, choosen_quality, choosen_filetype, status, operation, quality_combo, filetype_combo, url_input, download_button, choose_folder_button, choosen_folder_status, quality_label, filetype_label, status_bar):
         super().__init__()
 
@@ -72,7 +72,7 @@ class URLFinder(QObject,QRunnable):
                 filetypes = ['mp3', 'wav', 'flac']  # Add more filetypes if needed
                 self.filetype_combo.clear()
                 self.filetype_combo.addItems(filetypes)
-            
+
             else:
                 self.status_bar.showMessage("No audio streams found")
                 self.quality_label.setVisible(False)  # Hide quality selection title
@@ -244,7 +244,7 @@ class YouTubeDownloader(QMainWindow):
         self.download_button.clicked.connect(self.download)
         self.choose_folder_button.clicked.connect(self.choose_folder)
         self.open_folder_button.clicked.connect(self.open_save_path)
-        
+
         self.show_name_checkbox = self.findChild(QCheckBox, 'check_show_name')
         self.show_name_checkbox.stateChanged.connect(self.update_labels_visibility)
 
@@ -296,11 +296,11 @@ class YouTubeDownloader(QMainWindow):
         self.statusBar().showMessage("Finding URL...")
         self.url_finder_thread = URLFinderThread(self.url_input, self.statusBar())
         self.url_finder_thread.found_url.connect(self.handle_url_found)
-        self.url_finder_thread.started.connect(self.start_status_check)  
+        self.url_finder_thread.started.connect(self.start_status_check)
         self.url_finder_thread.finished.connect(self.stop_status_check)
         self.url_finder_thread.finished.connect(self.url_finder_thread.deleteLater)
         self.url_finder_thread.start()
-        
+
         self.status_timer = QTimer(self)
         self.status_timer.timeout.connect(self.check_ydl_status)
 
@@ -319,7 +319,7 @@ class YouTubeDownloader(QMainWindow):
                 self.handle_url_found(True)
             else:
                 self.handle_url_found(False)
-    
+
     def handle_url_found(self, url_found):
         if url_found:
             try:
@@ -328,19 +328,19 @@ class YouTubeDownloader(QMainWindow):
                     info = ydl.extract_info(url, download=False)
                     audio_streams = [stream for stream in info['formats'] if 'acodec' in stream and stream['acodec'] != 'none']
                     video_title = info.get('title', 'Unknown')
-                    self.video_name_text.setText(video_title) 
+                    self.video_name_text.setText(video_title)
 
                 self.quality_combo.clear()
                 audio_streams = sorted(audio_streams, key=lambda x: float(x['abr']) if 'abr' in x and isinstance(x['abr'], str) else float('inf'))
                 for stream in reversed(audio_streams):
-                    if 'abr' in stream and stream['abr']:  
+                    if 'abr' in stream and stream['abr']:
                         quality_info = f"{stream['abr']} kbps"
                         self.quality_combo.addItem(quality_info, stream)
 
-                filetypes = ['mp3', 'wav', 'flac']  
+                filetypes = ['mp3', 'wav', 'flac']
                 self.filetype_combo.clear()
                 self.filetype_combo.addItems(filetypes)
-                
+
                 self.quality_combo.setVisible(True)
                 self.filetype_combo.setVisible(True)
                 self.download_button.setVisible(True)
@@ -415,7 +415,7 @@ class YouTubeDownloader(QMainWindow):
         except Exception as e:
             self.statusBar().showMessage("Error: " + str(e))
             print(traceback.format_exc())
-    
+
     def choose_folder(self):
         folder = QFileDialog.getExistingDirectory(self, "Select Directory")
         if folder:
