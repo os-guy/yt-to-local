@@ -14,6 +14,7 @@ Most of the Linux distros are already installing it.
 - yt-dlp
 - ffprobe
 - ffmpeg
+- youtube_dl
 
 ## Building
 
