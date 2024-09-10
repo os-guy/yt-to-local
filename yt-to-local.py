@@ -150,10 +150,33 @@ class DownloadThread(QThread):
 
     def run(self):
         self.is_downloading = True
+
+        # Debug: Print the structure of selected_stream to inspect its keys
+        print("Selected stream data:", self.selected_stream)
+
+        # Use .get() to avoid KeyError in case 'title' is missing
+        title = self.selected_stream.get('title', 'unknown_title')
+        
+        # Create file name with the correct extension
+        output_filename = os.path.join(self.save_path, f'{title}.{self.filetype}')
+
+        # Check if the file already exists
+        if os.path.exists(output_filename):
+            self.error_signal.emit(f"Error: File '{output_filename}' already exists.")
+            self.is_downloading = False
+            return  # Exit the download process
+
+        # yt-dlp options
         ydl_opts = {
             'format': self.selected_stream['format_id'],
             'outtmpl': os.path.join(self.save_path, f'%(title)s.%(ext)s'),
+            'postprocessors': [{
+                'key': 'FFmpegExtractAudio',
+                'preferredcodec': self.filetype,
+                'preferredquality': '192',
+            }],
             'progress_hooks': [self.progress_hook],
+            'rm_cache_dir': True,  # Automatically delete the cache directory
         }
 
         self.operation.setText("Downloading...")
