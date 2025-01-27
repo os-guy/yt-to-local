@@ -59,6 +59,4 @@ You can run this with following:
 
 ## Project State
 
-This project is new and the developer is still working on it.
-So, if you'll be able to find some issues, please report to us.
-Problems can be solve.
+This project is a very WIP project. We're still working on it.
