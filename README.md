@@ -16,7 +16,7 @@ Most of the Linux distros are already installing it.
 - ffmpeg
 - youtube_dl
 
-## Building
+## Running
 
 ### On Linux
 
