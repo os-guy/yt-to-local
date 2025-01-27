@@ -6,7 +6,7 @@ This project was made on Python Programming Language.
 
 __YOU SHOULD INSTALL PYTHON TO RUN IT.__
 __AND PIP, FOR INSTALLING DEPENDENCIES.__
-Most of the Linux distros are already installing it.
+Most of the Linux distros are already comes with it.
 
 - pyqt6
 - pytube
